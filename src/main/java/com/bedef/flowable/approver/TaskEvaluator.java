@@ -8,6 +8,7 @@ import com.bedef.flowable.approver.feign.PersonActionClient;
 import feign.Feign;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -15,9 +16,8 @@ import java.util.Scanner;
 @Component
 public class TaskEvaluator {
 
-    private final PersonActionClient client = Feign.builder()
-            .encoder(new JacksonEncoder())
-            .target(PersonActionClient.class, "http://localhost:8080");
+    @Autowired
+    private PersonActionClient client;
 
     public void evaluateTask(TaskInfo task){
         PersonInfo info = task.getInfo();

@@ -1,6 +1,5 @@
 package com.bedef.flowable.approver;
 
-import com.bedef.flowable.approver.domain.Action;
 import com.bedef.flowable.approver.domain.TaskInfo;
 import com.bedef.flowable.approver.feign.PersonActionClient;
 import feign.Feign;
@@ -18,16 +17,15 @@ public class FlowableApproverApplication implements CommandLineRunner {
 	@Autowired
 	TaskEvaluator taskEvaluator;
 
+	@Autowired
+	private PersonActionClient client;
+
 	public static void main(String[] args) {
 		SpringApplication.run(FlowableApproverApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args){
-		//TODO: extract into bean
-		PersonActionClient client = Feign.builder()
-				.decoder(new JacksonDecoder())
-				.target(PersonActionClient.class, "http://localhost:8080");
 
 		List<TaskInfo> tasks = client.getTasks("snr").getTasks();
 
