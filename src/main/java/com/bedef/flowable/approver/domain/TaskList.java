@@ -13,5 +13,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TaskList {
 
-    private List<PersonInfo> tasks;
+    private List<TaskInfo> tasks;
 }

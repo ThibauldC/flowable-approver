@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Task {
-    private PersonInfo info;
-    private Action action;
+public class TaskEvaluation {
+    private String id;
+    private boolean approved;
 }
