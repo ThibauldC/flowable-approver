@@ -1,5 +1,7 @@
 package com.bedef.flowable.approver;
 
+import com.bedef.flowable.approver.domain.Action;
+import com.bedef.flowable.approver.domain.Task;
 import com.bedef.flowable.approver.feign.PersonActionClient;
 import feign.Feign;
 import feign.jackson.JacksonDecoder;
@@ -20,6 +22,9 @@ public class FlowableApproverApplication implements CommandLineRunner {
 				.decoder(new JacksonDecoder())
 				.target(PersonActionClient.class, "http://localhost:8080");
 
-		client.getTasks("snr").getTasks().forEach(System.out::println);
+		client.getTasks("snr").getTasks()
+				.stream()
+				.map(p -> new Task(p, Action.fromString(p.getAction())))
+				.forEach(System.out::println);
 	}
 }
