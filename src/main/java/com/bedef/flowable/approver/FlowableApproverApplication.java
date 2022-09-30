@@ -2,8 +2,6 @@ package com.bedef.flowable.approver;
 
 import com.bedef.flowable.approver.domain.TaskInfo;
 import com.bedef.flowable.approver.feign.PersonActionClient;
-import feign.Feign;
-import feign.jackson.JacksonDecoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
